@@ -2,7 +2,7 @@ version: "3"
 
 services:
   apache:
-    image: httpd:${APACHE_VERSION:-latest}-alpine
+    image: httpd:alpine
     container_name: apache
     ports:
       - 80:80
@@ -13,6 +13,7 @@ services:
       - ./data/logs:/var/log
   php:
     container_name: php
+    user: "1000:1000"
     build:
       context: ./webserver
       args:
